@@ -62,6 +62,24 @@ namespace TrueHome.Controllers
 
 		}
 
+		[Route("Activities/{id}")]
+		[HttpGet]
+		public async Task<IActionResult> GetActivitiesById(int id)
+		{
+			try
+			{
+				var activity = await _activityProvider.GetActivityByIdAsync(id);
+
+				return Ok(activity);
+			}
+			catch (Exception baseEx)
+			{
+
+				return BadRequest(baseEx.Message);
+			}
+
+		}
+
 		[Route("AddActivities")]
 		[HttpPost]
 		public async Task<IActionResult> AddActivity([FromBody] Activity activity)

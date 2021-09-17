@@ -39,6 +39,13 @@ namespace TrueHome.Entities.DBModel
             return activities;
         }
 
+        public static async Task<Activity> GetByIdAsync(int id)
+        {
+            Activity activity = await DomainEvents.RaiseSingleAsync<ActivityByIdRequestingEvent, Activity>(new ActivityByIdRequestingEvent(id));
+            return activity;
+        }
+
+
         public static async Task<List<Activity>> GetAsyncByPropertyId(int propertyId)
         {
             List<Activity> activities = await DomainEvents.RaiseSingleAsync<ActivityRequestingByPropertyIdEvent, List<Activity>>(new ActivityRequestingByPropertyIdEvent(propertyId));

@@ -32,6 +32,16 @@ namespace TrueHome.Infrastructure.Impl
             }
         }
 
+        public async Task<Activity> GetActivityByIdAsync(int id)
+        {
+            string sqlQueryActivity = $@"select * from public.Activity where id = @Id";
+
+            using (var connection = new NpgsqlConnection(Configuration.GetConnectionString("truehome")))
+            {
+                return await connection.QueryFirstAsync<Activity>(sqlQueryActivity, new { Id = id });
+            }
+        }
+
         public async Task<IEnumerable<Activity>> GetActivitiesByPropertyIdAsync(int propertyId)
         {
             string sqlQueryActivity = $@"select * from public.Activity where property_id = @PropertyId and schedule <= CURRENT_DATE + INTERVAL '14 day'

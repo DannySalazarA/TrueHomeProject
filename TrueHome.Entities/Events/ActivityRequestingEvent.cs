@@ -29,6 +29,17 @@ namespace TrueHome.Entities.Events
         public int PropertyId { get; private set; }
     }
 
+    public class ActivityByIdRequestingEvent : IDomainEvent
+    {
+        public ActivityByIdRequestingEvent(int id)
+        {
+            Id = id;
+            DateTimeEventOccurred = DateTime.Now;
+        }
+        public DateTime DateTimeEventOccurred { get; private set; }
+        public int Id { get; private set; }
+    }
+
     public class ActivityRequestingDefaultEvent : IDomainEvent
     {
         public ActivityRequestingDefaultEvent()

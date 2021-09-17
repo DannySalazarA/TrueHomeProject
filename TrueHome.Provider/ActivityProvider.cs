@@ -10,7 +10,7 @@ using TrueHome.Provider.Contracts;
 namespace TrueHome.Provider
 {
     public class ActivityProvider : IActivityProvider, IHandle<ActivityRequestingEvent, List<Activity>>, IHandle<ActivityRequestingByPropertyIdEvent, List<Activity>>,
-        IHandle<ActivityCreatingEvent, long>, IHandle<ActivityUpdateScheduleEvent>, IHandle<ActivityUpdateStatusEvent>
+        IHandle<ActivityCreatingEvent, long>, IHandle<ActivityUpdateScheduleEvent>, IHandle<ActivityUpdateStatusEvent>, IHandle<ActivityByIdRequestingEvent, Activity>
     {
         public ActivityProvider(IActivityRepository activityRepository)
         {
@@ -25,6 +25,11 @@ namespace TrueHome.Provider
         public async Task<List<Activity>> GetAddressByPropertyIdAsync(int propertyId)
         {
             return await Activity.GetAsyncByPropertyId(propertyId);
+        }
+
+        public async Task<Activity> GetActivityByIdAsync(int id)
+        {
+            return await Activity.GetByIdAsync(id);
         }
 
         public async Task<long> CreateActivityAsync(Activity activityParam)
@@ -68,6 +73,11 @@ namespace TrueHome.Provider
         public async Task HandleAsync(ActivityUpdateStatusEvent args)
         {
             await activityRepository.UpdateStatusActivityAsync(args.ActivityParam);
+        }
+
+        public async Task<Activity> HandleAsync(ActivityByIdRequestingEvent args)
+        {
+            return await activityRepository.GetActivityByIdAsync(args.Id);
         }
 
 

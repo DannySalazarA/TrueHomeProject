@@ -34,7 +34,7 @@ namespace TrueHome
 			services.AddTransient<IHandle<ActivityCreatingEvent, long>, ActivityProvider>();
 			services.AddTransient<IHandle<ActivityUpdateScheduleEvent>, ActivityProvider>();
 			services.AddTransient<IHandle<ActivityUpdateStatusEvent>, ActivityProvider>();
-
+			services.AddTransient<IHandle<ActivityByIdRequestingEvent, Activity>, ActivityProvider>(); ;
 		}
 
 		public static void ConfigureCors(this IServiceCollection services, IConfiguration configuration)

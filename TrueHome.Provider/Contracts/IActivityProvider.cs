@@ -13,5 +13,6 @@ namespace TrueHome.Provider.Contracts
         Task<long> CreateActivityAsync(Activity activityParam);
         Task UpdateScheduleActivityAsync(Activity activityParam);
         Task UpdateStatusActivityAsync(Activity activityParam);
+        Task<Activity> GetActivityByIdAsync(int id);
     }
 }
