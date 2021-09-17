@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrueHome.Entities\TrueHome.Entities.csproj" />
+    <ProjectReference Include="..\TrueHome.Infrastructure\TrueHome.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
